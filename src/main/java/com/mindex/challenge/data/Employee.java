@@ -9,7 +9,6 @@ public class Employee {
     private String position;
     private String department;
     private List<Employee> directReports;
-    private List<Employee> testing;
 
     public Employee() {
     }
