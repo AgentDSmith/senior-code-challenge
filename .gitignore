@@ -23,3 +23,8 @@
 .gradle/buildOutputCleanup/buildOutputCleanup.lock
 .gradle/buildOutputCleanup/cache.properties
 .gradle/buildOutputCleanup/outputFiles.bin
+*.class
+build/resources/main/application.properties
+build/resources/main/static/employee_database.json
+build/test-results/test/binary/output.bin
+build/test-results/test/binary/output.bin.idx

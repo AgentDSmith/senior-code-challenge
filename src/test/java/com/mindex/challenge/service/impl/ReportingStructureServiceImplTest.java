@@ -77,10 +77,9 @@ public class ReportingStructureServiceImplTest {
         one.setDirectReports(oneDirectReports);
 
         testDirectReports.add(one);
-
         testDirectReports.add(four);
-
         testEmployee.setDirectReports(testDirectReports);
+
         int expectedNumberOfReports = 4;
 
         String employeeId = createNewEmployee(testEmployee);
