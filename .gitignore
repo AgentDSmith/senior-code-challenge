@@ -15,3 +15,11 @@
 .idea/misc.xml
 .idea/gradle.xml
 .idea/$PRODUCT_WORKSPACE_FILE$
+.gradle/4.5.1/fileContent/fileContent.lock
+.gradle/4.5.1/fileContent/annotation-processors.bin
+.gradle/4.5.1/fileHashes/resourceHashesCache.bin
+.gradle/4.5.1/taskHistory/taskHistory.bin
+.gradle/4.5.1/taskHistory/taskHistory.lock
+.gradle/buildOutputCleanup/buildOutputCleanup.lock
+.gradle/buildOutputCleanup/cache.properties
+.gradle/buildOutputCleanup/outputFiles.bin
