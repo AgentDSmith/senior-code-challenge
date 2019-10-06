@@ -54,7 +54,7 @@ public class DataBootstrapTest {
         expectedCompensation.setEffectiveDate(new Date(1570160000));
         compensationRepository.insert(expectedCompensation);
 
-        Compensation testCompensation = compensationRepository.findByEmployee(employee);
+        Compensation testCompensation = compensationRepository.findByEmployeeEmployeeId(employee.getEmployeeId());
         assertNotNull(testCompensation);
         assertNotNull(testCompensation.getEmployee());
         assertEquals(expectedCompensation.getEmployee().getFirstName(), testCompensation.getEmployee().getFirstName());

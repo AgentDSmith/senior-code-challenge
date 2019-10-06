@@ -22,6 +22,7 @@ import static org.junit.Assert.assertNotNull;
 public class CompensationServiceImplTest {
 
     private String employeeUrl;
+    private String employeeIdUrl;
     private String compensationUrl;
     private String compensationIdUrl;
 
@@ -37,6 +38,7 @@ public class CompensationServiceImplTest {
     @Before
     public void setup() {
         employeeUrl = "http://localhost:" + port + "/employee";
+        employeeIdUrl = "http://localhost:" + port + "/employee/{id}";
         compensationUrl = "http://localhost:" + port + "/compensation";
         compensationIdUrl = "http://localhost:" + port + "/compensation/{id}";
     }
@@ -50,9 +52,10 @@ public class CompensationServiceImplTest {
         testEmployee.setPosition("Developer");
 
         String employeeId = createNewEmployee(testEmployee);
+        Employee readEmployee = getEmployee(employeeId);
 
         Compensation testCompensation = new Compensation();
-        testCompensation.setEmployee(testEmployee);
+        testCompensation.setEmployee(readEmployee);
         testCompensation.setSalary(55000);
         testCompensation.setEffectiveDate(new Date(1577836800));
 
@@ -62,15 +65,17 @@ public class CompensationServiceImplTest {
         assertCompensationEquivalence(testCompensation, createdCompensation);
 
 
-        //TODO fix scenario
-        // Read checks
-        //Compensation readCompensation = restTemplate.getForEntity(compensationIdUrl, Compensation.class, employeeId).getBody();
-        //assertNotNull(readCompensation.getEmployee());
-        //assertCompensationEquivalence(createdCompensation, readCompensation);
+        Compensation readCompensation = restTemplate.getForEntity(compensationIdUrl, Compensation.class, employeeId).getBody();
+        assertNotNull(readCompensation.getEmployee());
+        assertCompensationEquivalence(createdCompensation, readCompensation);
     }
 
     private String createNewEmployee(Employee employee) {
         return restTemplate.postForEntity(employeeUrl, employee, Employee.class).getBody().getEmployeeId();
+    }
+
+    private Employee getEmployee(String employeeId) {
+        return restTemplate.getForEntity(employeeIdUrl, Employee.class, employeeId).getBody();
     }
 
     private static void assertCompensationEquivalence(Compensation expected, Compensation actual) {
