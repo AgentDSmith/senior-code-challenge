@@ -4,6 +4,8 @@ import com.mindex.challenge.dao.CompensationRepository;
 import com.mindex.challenge.dao.EmployeeRepository;
 import com.mindex.challenge.data.Compensation;
 import com.mindex.challenge.data.Employee;
+import com.mindex.challenge.data.ReportingStructure;
+import com.mindex.challenge.service.ReportingStructureService;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -28,6 +30,9 @@ public class DataBootstrapTest {
 
     @Autowired
     private CompensationRepository compensationRepository;
+
+    @Autowired
+    private ReportingStructureService reportingStructureService;
 
     @Before
     public void init() {
@@ -63,5 +68,14 @@ public class DataBootstrapTest {
         assertEquals(expectedCompensation.getEmployee().getDepartment(), testCompensation.getEmployee().getDepartment());
         assertEquals(expectedCompensation.getSalary(), testCompensation.getSalary());
         assertEquals(expectedCompensation.getEffectiveDate(), testCompensation.getEffectiveDate());
+    }
+
+    @Test
+    public void testReportingStructure() {
+        ReportingStructure reportingStructure = reportingStructureService.create("16a596ae-edd3-4847-99fe-c4518e82c86f");
+
+        int expectedNumberOfReports = 4;
+        int actualNumberOfReports = reportingStructure.getNumberOfReports();
+        assertEquals(expectedNumberOfReports, actualNumberOfReports);
     }
 }
